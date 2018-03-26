@@ -33,6 +33,10 @@ export default new Router({
         {
           path: '/user-manager',
           component: resolve => require(['../components/pages/user-manager/user-manager.vue'], resolve)
+        },
+        {
+          path: '/recruit-manager',
+          component: resolve => require(['../components/pages/recruit-manager/recruit-manager.vue'], resolve)
         }
       ]
     },

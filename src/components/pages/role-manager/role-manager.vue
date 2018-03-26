@@ -1,5 +1,4 @@
 <template>
-
   <div class="table">
     <el-tabs type="border-card">
       <el-tab-pane label="角色管理">
@@ -31,7 +30,6 @@
         <RoleMenuTransfer></RoleMenuTransfer>
       </el-tab-pane>
     </el-tabs>
-
   </div>
 </template>
 
@@ -122,8 +120,7 @@
           $("#editBox").modal();
         },
         delAll(){
-          const self = this,
-            length = self.multipleSelection.length;
+          const self = this, length = self.multipleSelection.length;
           if(length < 1){
             self.$message("未选择任何条例");
             return;
@@ -170,12 +167,5 @@
 <style scoped>
   .handle-box{
     margin-bottom: 20px;
-  }
-  .handle-select{
-    width: 120px;
-  }
-  .handle-input{
-    width: 300px;
-    display: inline-block;
   }
 </style>
