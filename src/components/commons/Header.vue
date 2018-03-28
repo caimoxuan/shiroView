@@ -19,19 +19,19 @@
         data() {
             return {
                 name: 'cmx1111',
-                avator: require('../../../static/img/img.jpg')
+                avatar: require('../../../static/img/img.jpg')
             }
         },
         computed:{
             username() {
-              var user = JSON.parse(localStorage.getItem('userinfo'));
+              let user = this.$store.getters.ApplicationUserInfo;
               let username = user ? user.userName : null;
               return username ? username : this.name;
             },
             avatorurl() {
-              var user = JSON.parse(localStorage.getItem('userinfo'));
-              let avatorurl = user ? user.avatorUrl : null;
-              return avatorurl ? avatorurl : this.avator;
+              let user = this.$store.getters.ApplicationUserInfo;
+              let avatarurl = user ? user.avatarUrl : null;
+              return avatarurl ? avatarurl : this.avatar;
             }
         },
         methods:{
@@ -41,7 +41,8 @@
                     self.$http.post("/logout").then(function(res){
                       console.log(res);
                       if(res){
-                        localStorage.removeItem('userinfo');
+                        localStorage.removeItem('userInfo');
+                        self.$store.commit("CLEAR_USER_INFO");
                       }
                     }).catch(function(err){
                       console.log(err)

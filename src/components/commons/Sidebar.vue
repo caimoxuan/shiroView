@@ -24,26 +24,6 @@
         data() {
             return {
                 items: [
-                    {
-                      icon: 'el-icon-setting',
-                      index: 'menu-manager',
-                      title: '菜单管理'
-                    },
-                    {
-                      icon: 'el-icon-menu',
-                      index: '2',
-                      title: '表格',
-                      subs: [
-                        {
-                          index: 'basetable',
-                          title: '基础表格'
-                        },
-                        {
-                          index: 'vuetable',
-                          title: 'Vue表格组件'
-                        }
-                      ]
-                    }
                 ]
             }
         },
@@ -52,9 +32,9 @@
             return this.$route.path.replace('/','');
           },
           onItems() {
-            var userinfo = JSON.parse(localStorage.getItem('userinfo'));
-            if(userinfo&&userinfo.systemMenu){
-              return userinfo.systemMenu;
+            let userInfo = this.$store.getters.ApplicationUserInfo;
+            if(userInfo&&userInfo.menuList){
+              return userInfo.menuList;
             }else{
               return this.items;
             }

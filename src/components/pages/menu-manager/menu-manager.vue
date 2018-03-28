@@ -8,7 +8,7 @@
     </div>
     <div class="handle-box">
       <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
-      <el-select v-model="select_cate" placeholder="筛选菜单" class="handle-select mr10">
+      <el-select v-model="select_cate" placeholder="筛选菜单" class="handle-select mr10" @change="select_cate_change_handle">
         <el-option key="1" label="主菜单" value="主菜单"></el-option>
         <el-option key="2" label="子菜单" value="字菜单"></el-option>
       </el-select>
@@ -22,7 +22,7 @@
       </el-table-column>
       <el-table-column prop="menuCode" label="菜单编号" width="120">
       </el-table-column>
-      <el-table-column prop="parentMenuCode" label="上级菜单编号" width="130">
+      <el-table-column prop="parentMenuCode" label="上级菜单编号" width="100">
       </el-table-column>
       <el-table-column prop="menuUrl" label="链接地址" width="120">
       </el-table-column>
@@ -30,7 +30,7 @@
       </el-table-column>
       <el-table-column prop="sequence" label="排序" >
       </el-table-column>
-      <el-table-column label="操作" width="150">
+      <el-table-column label="操作" width="180">
         <template slot-scope="scope">
           <el-button size="small"
                      @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -159,6 +159,9 @@
         },
         handleSelectionChange(val) {
           this.multipleSelection = val;
+        },
+        select_cate_change_handle(val) {
+          console.log(val);
         },
         search () {
           this.is_search = true;

@@ -14,7 +14,7 @@
           </el-table-column>
           <el-table-column prop="description" label="详细描述">
           </el-table-column>
-          <el-table-column label="操作" width="150">
+          <el-table-column label="操作" width="180">
             <template slot-scope="scope">
               <el-button size="small"
                          @click="handleEdit(scope.$index, scope.row)">编辑</el-button>

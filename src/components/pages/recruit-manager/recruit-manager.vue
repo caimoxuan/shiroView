@@ -48,7 +48,6 @@
         },
       methods : {
         getRouteData () {
-          console.log("test");
           let self = this;
           self.$http.get('http://localhost:8899/getData/getAllRoutes').then(function(res){
             console.log(res);
@@ -69,6 +68,10 @@
           this.initData.routeId = val;
         },
         makeRouteCode () {
+          if(!this.initData.routeId){
+            this.$message("请先选择线路");
+            return;
+          }
           let self = this;
           self.$http.get('http://localhost:8899/getData/getStopId', {
               params:{routeId: self.initData.routeId,

@@ -18,7 +18,6 @@ const Axios = axios.create({
 //传参序列化(添加拦截器) perHandler
 Axios.interceptors.request.use(
   config => {
-    console.log("start preHandler");
     if(config.method === "post" || config.method === "get" || config.method === "delete"){
       config.data = qs.stringify(config.data);
     }
@@ -81,7 +80,7 @@ Axios.interceptors.response.use(
     if(error.response) {
       console.log(error.response.status);
       switch(error.response.status){
-        case 401:
+        case 401: //后台保证登陆失效 或未认证状态下返回401
           Message({
             showClose: true,
             message: "登陆失效，请重新登陆",

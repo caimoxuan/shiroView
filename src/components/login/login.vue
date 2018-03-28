@@ -54,9 +54,11 @@
         const self = this;
         self.$http.post("/login", this.ruleForm).then(function(res){
           var result = res.data;
+          console.log(result.data.userName);
           if(result){
             if(result.success){
-              localStorage.setItem("userinfo", JSON.stringify(result.data));
+              localStorage.setItem("userInfo", JSON.stringify(result.data));
+              self.$store.commit("STORE_USER_INFO", {userInfo : result.data});
               self.$router.push("/menu");
             }else{
               self.$message(result.message);

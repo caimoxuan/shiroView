@@ -64,6 +64,10 @@
           });
         },
         changeRole() {
+          if(!this.s_roleId){
+            this.$message("请先选择角色!");
+            return;
+          }
           const self = this;
           self.$confirm("确认修改角色的菜单?", {
             type: "waring"

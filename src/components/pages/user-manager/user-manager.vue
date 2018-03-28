@@ -53,6 +53,10 @@
           })
         },
         changeRole() {
+          if(!this.s_userName){
+            this.$message("请先选择用户!");
+            return;
+          }
           const self = this;
           self.$confirm("确认修改用户权限角色?", {
             type: "waring"
