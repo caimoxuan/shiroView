@@ -19,7 +19,10 @@ let options = {
   },
   mutations: {
     CLEAR_USER_INFO: (state) => {
-      state.userInfo = null;
+      state.userInfo.userName = '';
+      state.userInfo.userid = '';
+      state.userInfo.avatarUrl = '';
+      state.userInfo.menuList = [];
     },
     STORE_USER_INFO: (state, {userInfo}) => {
       state.userInfo = userInfo;

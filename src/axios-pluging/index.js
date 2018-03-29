@@ -40,7 +40,7 @@ Axios.interceptors.request.use(
 
 Axios.interceptors.response.use(
   res => {
-    if(!res.data){
+    if(res.status != 200){
       console.log(res);
       Message({
         showClose: true,

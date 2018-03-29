@@ -15,14 +15,6 @@ export default new Router({
       component: resolve => require(['../components/commons/Home.vue'], resolve),
       children:[
         {
-          path: '/homePage',
-          component: resolve => require(['../components/pages/homepage.vue'], resolve)
-        },
-        {
-          path: '/fileController',
-          component: resolve => require(['../components/pages/filecontroller.vue'], resolve)
-        },
-        {
           path: '/menu-manager',
           component: resolve => require(['../components/pages/menu-manager/menu-manager.vue'], resolve)
         },
@@ -35,8 +27,12 @@ export default new Router({
           component: resolve => require(['../components/pages/user-manager/user-manager.vue'], resolve)
         },
         {
-          path: '/recruit-manager',
-          component: resolve => require(['../components/pages/recruit-manager/recruit-manager.vue'], resolve)
+          path: '/recruit-manager-data',
+          component: resolve => require(['../components/pages/recruit-manager/data/recruit-manager.vue'], resolve)
+        },
+        {
+          path: '/recruit-manager-check',
+          component: resolve => require(['../components/pages/recruit-manager/check/recruit-check.vue'], resolve)
         }
       ]
     },

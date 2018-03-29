@@ -13,14 +13,15 @@
               <el-input v-model="initData.routeName"></el-input>
             </el-form-item>
             <el-form-item label="招募编号" >
-              <el-input v-model="initData.routeCode"></el-input>
+              <el-input v-model="initData.routeEnterCode"></el-input>
             </el-form-item>
           </el-form>
         </div>
         <div class = "body-foot">
           <el-button @click="makeRouteCode">制作招募数据</el-button>
-          <el-input type="textarea" :autosize="{minRows: 10}" v-model="enterRouteCode"></el-input>
-          <el-button @click="show">测试</el-button>
+          <el-input type="textarea" :autosize="{minRows: 10, maxRows: 20}" v-model="enterRouteCode"></el-input>
+          <el-button @click="show">预览线路</el-button>
+          <el-button  @click="saveToMongo">保存数据</el-button>
         </div>
       </div>
       <!-- E make recruit data -->
@@ -43,7 +44,8 @@
               routeEnterCode:''
             },
             routeCode:{},
-            enterRouteCode:''
+            enterRouteCode:'',
+            collectionName: 'recruit_test_0328'
           }
         },
       methods : {
@@ -78,13 +80,27 @@
                       routeName: self.initData.routeName,
                       enterRouteId: self.initData.routeEnterCode}
           }).then(function (response) {
-              self.enterRouteCode = JSON.stringify(response.data)
+              self.enterRouteCode = JSON.stringify(response.data, null, 2);
               if (window.localStorage) {
                 localStorage.setItem('item', self.enterRouteCode)
               }
             }).catch(function (error) {
               console.log(error)
             })
+        },
+        saveToMongo () {
+          if(!this.enterRouteCode){
+            this.$message("请先生成线路数据!");
+            return;
+          }
+          let self = this;
+          self.$http.post('http://localhost:8899/mongoRoute/saveDataToMongo', {
+            routeData: self.enterRouteCode, collectionName: self.collectionName
+          }).then(function (res) {
+            self.$message.success("保存成功");
+          }).catch(function (error) {
+              console.log(error)
+          })
         }
       },
       components: {
