@@ -15,12 +15,11 @@
     export default {
         data () {
           return {
-
           }
         },
       methods:{
           delStation() {
-            console.log("delStation" + JSON.stringify(this.routeStation));
+            this.$emit("delStation", this.routeStation.stationName);
           }
       },
       props:{

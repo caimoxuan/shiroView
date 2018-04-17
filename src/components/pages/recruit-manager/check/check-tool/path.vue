@@ -3,7 +3,7 @@
       <button type="button" class="close" @click="delPath">
         &times;
       </button>
-      <div class="path-content"></div>
+      <div class="path-content" @click="showDetail"></div>
     </div>
 </template>
 
@@ -14,6 +14,9 @@
       },
       methods : {
         delPath () {
+          console.log(this.point);
+        },
+        showDetail () {
           console.log(this.point);
         }
       }
@@ -26,7 +29,8 @@
     height: 20px;
     box-shadow: 0px 0px 1px #c7254e;
     border-radius: 50%;
-    margin:2px;
+    margin:6px;
+    cursor: pointer;
   }
   .path {
     margin: 2px;

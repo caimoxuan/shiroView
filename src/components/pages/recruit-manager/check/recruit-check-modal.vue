@@ -21,7 +21,7 @@
               </el-form-item>
               <el-form-item label="站点" >
                 <!--<el-input type="textarea" v-bind:value="routeData.price"></el-input>-->
-                <stations :routeStation="sta" v-for="sta in routeData.stations" :key="sta.stationName"></stations>
+                <stations :routeStation="sta" v-for="sta in routeData.stations" :key="sta.stationName" v-on:delStation="delStation"></stations>
               </el-form-item>
               <el-form-item label="路径" >
                 <path-point :point="p" v-for="p in routeData.path" :key="p.lat"></path-point>
@@ -69,6 +69,27 @@
       methods: {
         updateToMongo () {
           console.log(this.routeData);
+          let self = this;
+          self.$http.post('http://localhost:8899/mongoRoute/updateMongoRoute', {
+            routeData: JSON.stringify(self.routeData), collection: "recruit_test_0328"
+          }).then(function (res) {
+            self.$message.success("保存成功");
+          }).catch(function (error) {
+            console.log(error)
+          })
+        },
+        delStation (val) {
+          console.log(val)
+          let self = this;
+          self.routeData.stations.forEach((sta,index) => {
+            if(sta.stationName===val){
+              console.log("index:" + index);
+              self.routeData.stations.splice(index, 1);
+            }
+          })
+        },
+        delPath (index) {
+
         }
       },
       watch: {
